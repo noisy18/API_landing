@@ -13,4 +13,4 @@ class Request(Base):
     surname: Mapped[str] = mapped_column(String, nullable=False, index=True)
     email: Mapped[str] = mapped_column(String, unique=True, index=True, nullable=False)
     phone: Mapped[str] = mapped_column(String(20), unique=False, index=False, nullable=False)
-    created_at: Mapped[str] = mapped_column(String, nullable=False, default=get_current_time())
+    created_at: Mapped[str] = mapped_column(String, nullable=False, default=lambda: get_current_time())
