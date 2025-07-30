@@ -12,24 +12,14 @@ class RequestRepository(BaseRepository[Request]):
         super().init(session)
     
     async def create_request(self, request: RequestCreateSchema) -> Request:
-        # return await self.create(
-        #     name=request.name,
-        #     surname=request.surname,
-        #     email=request.email,
-        #     phone=request.phone,
-        #     returning=True
-        # )
-        instance = self.model(
+        return await self.create(
             name=request.name,
             surname=request.surname,
             email=request.email,
             phone=request.phone,
-            created_at=request.created_at
+            returning=True
         )
-        self.session.add(instance)
-        await self.session.flush()
-        await self.session.refresh(instance)
-        return instance
+
     
     async def get_request_by_email(self, email: str) -> Optional[Request]:
         requests = await self.filter_by(email=email)

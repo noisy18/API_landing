@@ -15,9 +15,5 @@ async def post(request_data: RequestCreateSchema, db: DB = Depends(get_db)):
     request = await db.requests.get_request_by_email(email=request_data.email)
     if request:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Вы ранее уже записывались на пробный урок")
-    
-    data_with_timestamp = request_data.model_dump()
-    data_with_timestamp["created_at"] = get_current_time()
-
-    new_request = await db.requests.create_request(request=data_with_timestamp)
+    new_request = await db.requests.create_request(request=request_data)
     return new_request

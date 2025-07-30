@@ -8,7 +8,6 @@ class RequestCreateSchema(BaseModel):
     surname: str
     email: EmailStr
     phone: str = Field(example="+79991234567")
-    created_at: datetime
 
     @classmethod
     def validate_phone(cls, phone: str) -> str:
@@ -25,7 +24,7 @@ class RequestResponseSchema(BaseSchema):
     surname: str
     email: EmailStr
     phone: str = Field(example="+79991234567")
-    created_at: datetime
+    created_at: str
 
     class Config:
         from_attributes = True

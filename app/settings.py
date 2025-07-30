@@ -6,5 +6,5 @@ timezone = pytz.timezone("Europe/Moscow")
 
 
 # Functions
-def get_current_time():
-    return datetime.now(timezone)
+def get_current_time() -> str:
+    return datetime.now(timezone).isoformat()
